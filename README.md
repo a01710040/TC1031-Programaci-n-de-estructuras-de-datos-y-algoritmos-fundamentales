@@ -1,8 +1,8 @@
-# Proyecto: Sistema de Distribución Don Virginio
-Escribe aquí un overview general de tu proyecto
+# Proyecto: Sistema de Distribución Café Don Virginio
+Este proyecto es un sistema de gestión y organización de pedidos para el emprendimiento de distribución de Café Don Virginio, producido en la sierra. Permite administrar los registros de ventas de manera estructurada y consultarlos ordenados según su valor financiero.
 
 ## Descripción del avance 1
-Escribe aquí la descripción de lo que contiene este avance
+En este avance 1, se modelaron los pedidos utilizando la clase `Pedido` y se implementó un programa interactivo en C++ que inicializa una lista de ventas en memoria dentro de un `std::vector<Pedido>`. El programa integra la plantilla de algoritmos de ordenamiento `Sorts<T>` vista en clase para organizar los pedidos por su monto total a cobrar utilizando los métodos `mergeSort`, `insertionSort` y `selectionSort`.
 
 ## Instrucciones para compilar el avance de proyecto
 Ejecuta el siguiente comando en la terminal:
@@ -15,7 +15,13 @@ Ejecuta el siguiente comando en la terminal:
 `./primer_avance` 
 
 ## Descripción de las entradas del avance de proyecto
-Escribe aquí la descripción de las entradas del proyecto, por ejemplo, si de entrada se requieren varios archivos, hay que indicar el formato de cada uno de ellos, y proporcionar un ejemplo de los datos de cada archivo.
+Las entradas son generadas dinámicamente en memoria dentro del archivo `main.cpp` mediante la función `cargarDatosIniciales()`. La función construye objetos de la clase `Pedido` con los siguientes atributos:
+- `id` (`int`): Identificador único del pedido.
+- `cliente` (`std::string`): Nombre o razón social del comprador.
+- `fecha` (`std::string`): Fecha de registro ("YYYY-MM-DD").
+- `tipoCafe` (`std::string`): Presentación del producto ("Molido" o "Grano").
+- `cantidadKg` (`double`): Volumen de café solicitado en kilogramos.
+- `total` (`double`): Monto acumulado a cobrar en pesos mexicanos.
 
 ## Descripción de las salidas del avance de proyecto
 Escribe aquí la descripción de los resultados de la ejecución de tu programa.
