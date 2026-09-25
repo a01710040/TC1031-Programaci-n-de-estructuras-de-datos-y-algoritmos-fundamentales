@@ -1,26 +1,31 @@
-# Proyecto Avance 1: Sistema de Distribución de Café Don Virginio
+# Proyecto: Nombre de tu proyecto
+Escribe aquí un overview general de tu proyecto
 
-**Materia:** TC1031 Programación de estructuras de datos y algoritmos fundamentales  
-**Profesor:** Eduardo Juárez Pérez  
-**Autor:** Raúl Enrique Torres Ledesma  
-**Matrícula:** A01710040 
+## Descripción del avance 1
+Escribe aquí la descripción de lo que contiene este avance
 
----
+## Instrucciones para compilar el avance de proyecto
+Ejecuta el siguiente comando en la terminal:
 
-## Descripción del Proyecto
-Este proyecto consiste en un sistema de gestión de pedidos para un emprendimiento de distribución de café producido en la sierra. El programa inicializa un conjunto de registros de ventas directamente en memoria mediante un `std::vector<Pedido>`, y permite al usuario consultar los datos ordenados por el monto total a cobrar utilizando las implementaciones de la plantilla `Sorts<T>` vistas en clase.
+`g++ main.cpp -std=c++11 -o primer_avance` 
 
----
+## Instrucciones para ejecutar el avance de proyecto
+Ejecuta el siguiente comando en la terminal:
 
-## Estructura de Archivos
-* `Pedido.h`: Clase entidad que modela un pedido de café y sobrecarga los operadores de comparación (`<`, `>`, `<=`, `>=`).
-* `Sorts.h`: Plantilla con las implementaciones de los algoritmos de ordenamiento vistas en clase (`mergeSort`, `insertionSort`, `selectionSort`).
-* `main.cpp`: Menú interactivo en consola y función de carga de datos en memoria.
+`./primer_avance` 
 
----
+## Descripción de las entradas del avance de proyecto
+Escribe aquí la descripción de las entradas del proyecto, por ejemplo, si de entrada se requieren varios archivos, hay que indicar el formato de cada uno de ellos, y proporcionar un ejemplo de los datos de cada archivo.
 
-## Instrucciones para Compilar y Ejecutar
+## Descripción de las salidas del avance de proyecto
+Escribe aquí la descripción de los resultados de la ejecución de tu programa.
 
-### Compilación (Terminal)
-```bash
-g++ -std=c++11 main.cpp -o sistema_cafe
+## Desarrollo de competencias
+
+### SICT0301: Evalúa los componentes
+#### Hace un análisis de complejidad correcto y completo para los algoritmos de ordenamiento usados en el programa.
+Escribe aquí tus argumentos sobre por qué consideras que has desarrrollado esta competencia y dónde se puede observar el desarrollo que mencionas.
+
+### SICT0302: Toma decisiones
+#### Selecciona un algoritmo de ordenamiento adecuado al problema y lo usa correctamente.
+Escribe aquí tus argumentos sobre por qué consideras que has desarrrollado esta competencia y dónde se puede observar el desarrollo que mencionas.
