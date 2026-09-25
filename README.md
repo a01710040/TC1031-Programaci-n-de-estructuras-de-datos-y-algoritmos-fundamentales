@@ -14,7 +14,7 @@ Este proyecto consiste en un sistema de gestión de pedidos para un emprendimien
 
 ## Estructura de Archivos
 * `Pedido.h`: Clase entidad que modela un pedido de café y sobrecarga los operadores de comparación (`<`, `>`, `<=`, `>=`).
-* `sorts.h`: Plantilla con las implementaciones de los algoritmos de ordenamiento vistas en clase (`mergeSort`, `insertionSort`, `selectionSort`).
+* `Sorts.h`: Plantilla con las implementaciones de los algoritmos de ordenamiento vistas en clase (`mergeSort`, `insertionSort`, `selectionSort`).
 * `main.cpp`: Menú interactivo en consola y función de carga de datos en memoria.
 
 ---
