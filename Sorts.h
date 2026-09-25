@@ -10,9 +10,16 @@ private:
     void mergeSplit(std::vector<T>& A, std::vector<T>& B, int low, int high);
 
 public:
+    // Mejor caso: O(n log n)
+    // Caso promedio: O(n log n)
+    // Peor caso: O(n log n)
     std::vector<T> mergeSort(const std::vector<T>& source);
 };
 
+/* Mejor caso: O(n)
+ * Caso promedio: O(n)
+ * Peor caso: O(n)
+ */
 template <class T>
 void Sorts<T>::mergeArray(std::vector<T> &A, std::vector<T> &B, int low, int mid, int high) {
     int i = low;
@@ -46,7 +53,10 @@ void Sorts<T>::mergeArray(std::vector<T> &A, std::vector<T> &B, int low, int mid
         A[i] = B[i];
     }
 }
-
+/* Mejor caso: O(n log n)
+ * Caso promedio: O(n log n)
+ * Peor caso: O(n log n)
+ */
 template <class T>
 void Sorts<T>::mergeSplit(std::vector<T> &A, std::vector<T> &B, int low, int high) {
     if ((high - low) < 1) {
@@ -57,7 +67,10 @@ void Sorts<T>::mergeSplit(std::vector<T> &A, std::vector<T> &B, int low, int hig
     mergeSplit(A, B, mid + 1, high);
     mergeArray(A, B, low, mid, high);
 }
-
+/* Mejor caso: O(n log n)
+ * Caso promedio: O(n log n)
+ * Peor caso: O(n log n)
+ */
 template <class T>
 std::vector<T> Sorts<T>::mergeSort(const std::vector<T> &source) {
     std::vector<T> v(source);
