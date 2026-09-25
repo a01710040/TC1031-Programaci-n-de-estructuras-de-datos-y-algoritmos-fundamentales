@@ -1,4 +1,4 @@
-# Proyecto: Nombre de tu proyecto
+# Proyecto: Sistema de Distribución Don VIrginio
 Escribe aquí un overview general de tu proyecto
 
 ## Descripción del avance 1
