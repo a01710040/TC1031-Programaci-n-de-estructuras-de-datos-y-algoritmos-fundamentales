@@ -73,12 +73,33 @@ ID: 103 | Cliente: Hotel Sierra Azul | Fecha: 2026-08-11 | Tipo: Grano | Kg: 25 
 ## Desarrollo de competencias
 
 ### SICT0301: Evalúa los componentes
-#### Hace un análisis de complejidad correcto y completo para los algoritmos de ordenamiento usados en el programa.
-El desarrollo de esta competencia se demuestra en el análisis del algoritmo `mergeSort` de la clase `Sorts<T>` utilizado en `main.cpp`:
 
-- **Mejor Caso - $O(n \log n)$:** Ocurre de forma constante independientemente del estado inicial de los datos. La función `mergeSplit` divide recursivamente el vector a la mitad ($\log n$ niveles de división) y `mergeArray` realiza la mezcla de los elementos en $O(n)$ por cada nivel.
-- **Caso Promedio - $O(n \log n)$:** Se mantiene por la consistencia de la estrategia Divide y Vencerás.
-- **Peor Caso - $O(n \log n)$:** No presenta degradación de rendimiento sin importar el grado de desorden de los elementos.
+Para demostrar esta competencia, se analiza formalmente la razón matemática y algorítmica por la cual el algoritmo **Merge Sort** implementado en `Sorts.h` responde a una complejidad de **$O(n \log n)$**.
+
+#### 1. Origen del componente $\log n$: Cantidad de divisiones recursivas
+La función `mergeSplit` parte el vector por la mitad en cada llamada.
+* Cada paso reduce el tamaño de las sublistas.
+* La cantidad de veces que un conjunto de tamaño $n$ se puede dividir a la mitad hasta llegar a elementos individuales de tamaño 1 está dada por la función logarítmica base 2: $\log_2(n)$.
+* Esto significa que la secuencia de llamadas recursivas se ejecuta a lo largo de exactamente **$\log_2(n)$ etapas de división**.
+
+#### 2. Origen del componente $n$:
+En cada etapa de la recursión, la función `mergeArray` se encarga de combinar las sublistas de forma ordenada.
+* Para realizar la mezcla, el ciclo `while` compara los valores y los coloca en el vector auxiliar `tmp`. Posteriormente, un ciclo `for` copia de vuelta estos elementos al arreglo principal.
+* En cualquier etapa de la recursión, la suma total de los elementos distribuidos entre todas las sublistas que se están procesando **siempre es igual a $n$**.
+* Por lo tanto, el trabajo de comparación y copia acumulado en cada etapa de mezcla es estrictamente lineal: **$O(n)$**.
+
+#### 3. Demostración de la Complejidad Global $O(n \log n)$
+La complejidad total se obtiene multiplicando la cantidad de etapas de división por el trabajo de mezcla requerido en cada una de ellas:
+
+$$\text{Complejidad Total} = \log_2(n) \times O(n) = O(n \log n)$$
+
+#### Justificación del comportamiento en cada escenario:
+
+| Escenario | Complejidad | Razón Algorítmica |
+| :--- | :---: | :--- |
+| **Mejor caso** | $O(n \log n)$ | La división recursiva se realiza siempre hasta el final. No existe una condición de parada temprana aunque el vector inicial ya se encuentre ordenado. |
+| **Caso promedio** | $O(n \log n)$ | Las particiones dividen el arreglo simétricamente a la mitad en cada paso, manteniendo constante la cantidad de etapas en $\log_2(n)$ y la complejidad en $O(n)$. |
+| **Peor caso** | $O(n \log n)$ | Incluso en el caso con mayor cantidad de intercalaciones, la cantidad de etapas no cambia y la complejidad sigue en $O(n)$ en cada paso. |
 
 
 ### SICT0302: Toma decisiones
