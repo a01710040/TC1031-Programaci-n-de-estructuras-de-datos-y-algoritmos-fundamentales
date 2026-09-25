@@ -54,7 +54,6 @@ El desarrollo de esta competencia se demuestra en el análisis del algoritmo `me
 - **Mejor Caso - $O(n \log n)$:** Ocurre de forma constante independientemente del estado inicial de los datos. La función `mergeSplit` divide recursivamente el vector a la mitad ($\log n$ niveles de división) y `mergeArray` realiza la mezcla de los elementos en $O(n)$ por cada nivel.
 - **Caso Promedio - $O(n \log n)$:** Se mantiene por la consistencia de la estrategia Divide y Vencerás.
 - **Peor Caso - $O(n \log n)$:** No presenta degradación de rendimiento sin importar el grado de desorden de los elementos.
-- **Complejidad Espacial - $O(n)$:** Requiere un vector auxiliar `tmp` de tamaño $n$ para almacenar temporalmente los subarreglos combinados antes de copiarlos de regreso a la estructura principal.
 
 ### SICT0302: Toma decisiones
 #### Selecciona un algoritmo de ordenamiento adecuado al problema y lo usa correctamente.
