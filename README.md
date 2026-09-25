@@ -80,6 +80,7 @@ El desarrollo de esta competencia se demuestra en el análisis del algoritmo `me
 - **Caso Promedio - $O(n \log n)$:** Se mantiene por la consistencia de la estrategia Divide y Vencerás.
 - **Peor Caso - $O(n \log n)$:** No presenta degradación de rendimiento sin importar el grado de desorden de los elementos.
 
+
 ### SICT0302: Toma decisiones
 #### Selecciona un algoritmo de ordenamiento adecuado al problema y lo usa correctamente.
 El desarrollo de esta competencia se demuestra en la elección e integración de **Merge Sort** para el sistema de Café Don Virginio:
