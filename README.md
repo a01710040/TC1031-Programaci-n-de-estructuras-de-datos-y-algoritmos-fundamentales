@@ -9,10 +9,35 @@ Ejecuta el siguiente comando en la terminal:
 
 `g++ main.cpp -std=c++11 -o primer_avance` 
 
-## Instrucciones para ejecutar el avance de proyecto
-Ejecuta el siguiente comando en la terminal:
+## ¿Cómo usar el programa?
 
-`./primer_avance` 
+Al ejecutar el programa se muestra el menú principal interactivo:
+
+```text
+=== SISTEMA DE DISTRIBUCION CAFE DON VIRGINIO ===
+1. Mostrar pedidos originales (sin ordenar)
+2. Ordenar pedidos por Total (Merge Sort)
+3. Salir
+Selecciona una opcion:
+```
+
+### 1. Mostrar pedidos originales (sin ordenar)
+
+Al seleccionar la opción `1`, el programa despliega la lista completa de ventas registradas en el orden inicial en el que están almacenadas en memoria. Para cada pedido se muestra su ID, cliente, fecha de registro, tipo de café (molido o grano), kilogramos y el monto total a cobrar.
+
+### 2. Ordenar pedidos por Total (Merge Sort)
+
+Al seleccionar la opción `2`, el programa ejecuta el algoritmo **Merge Sort** para clasificar todos los pedidos de manera ascendente tomando como criterio el monto total (`total`). Inmediatamente después, despliega la lista resultante ordenada de menor a mayor precio.
+
+### 3. Salir
+
+Al seleccionar la opción `3`, el programa imprime el mensaje `Saliendo del programa...` y finaliza la ejecución de forma limpia.
+
+Si se ingresa un valor que no corresponda a las opciones del menú (por ejemplo, `4` o un número negativo), el programa despliega el mensaje de advertencia:
+
+```text
+Opcion invalida.
+```
 
 ## Descripción de las entradas del avance de proyecto
 Las entradas son generadas dinámicamente en memoria dentro del archivo `main.cpp` mediante la inicialización directa de la estructura `std::vector<Pedido>`. Cada objeto de la clase `Pedido` contiene los siguientes atributos:
