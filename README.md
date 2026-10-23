@@ -119,14 +119,14 @@ El desarrollo de esta competencia se demuestra en la elección e integración de
  
 #### Implementa mecanismos para consultar información de las estructuras correctos.
 Todas las consultas están en el menú y recorren la lista con el iterador de `DList`:
-- **Buscar por ID** (`buscarPorId`, `main.cpp`, línea 147): regresa el pedido, o indica que no existe. Valida que lo escrito sea un entero.
-- **Pedidos de un cliente** (`pedidosDeCliente`, línea 164): imprime los pedidos cuyo cliente contiene el texto, sin importar mayúsculas, y regresa cuántos encontró. Esto permite buscar con el nombre completo o con una parte.
-- **Primer y último pedido registrados** (líneas 279 y 280): usa `getFirst()` y `getLast()` de la lista en $O(1)$.
-- **Pedidos ordenados por total** (`imprimirOrdenados`, línea 135): usa Merge Sort sobre una copia, sin alterar la lista.
+- **Buscar por ID** (`buscarPorId`, `main.cpp`, línea 139): regresa el pedido, o indica que no existe. Valida que lo escrito sea un entero.
+- **Pedidos de un cliente** (`pedidosDeCliente`, línea 156): imprime los pedidos cuyo cliente contiene el texto, sin importar mayúsculas, y regresa cuántos encontró. Esto permite buscar con el nombre completo o con una parte.
+- **Primer y último pedido registrados** (líneas 266 y 267): usa `getFirst()` y `getLast()` de la lista en $O(1)$.
+- **Pedidos ordenados por total** (`imprimirOrdenados`, línea 126): usa Merge Sort sobre una copia, sin alterar la lista.
 En todos los casos se manejan los resultados vacíos (no existe el ID, no hay pedidos de ese cliente, la lista está vacía) con un mensaje claro.
  
 #### Implementa mecanismos de lectura de archivos para cargar datos a las estructuras de manera correcta.
-- `cargarPedidos` (`main.cpp`, línea 73) abre `pedidos.csv` con `std::ifstream`, ignora la línea de encabezado y, por cada línea, llama a `leerPedido` (línea 47). Cada pedido válido se agrega a la `DList` con `add`.
+- `cargarPedidos` (`main.cpp`, línea 64) abre `pedidos.csv` con `std::ifstream`, ignora la línea de encabezado y, por cada línea, llama a `leerPedido` (línea 47). Cada pedido válido se agrega a la `DList` con `add`.
 - `leerPedido` separa los seis campos por comas con `std::getline` y convierte los números con `aEntero` y `aDecimal`, que rechazan texto como `x` o `12abc`. También valida que el `id` y los kilogramos sean mayores a 0 y que el total no sea negativo.
 - Las líneas inválidas no detienen la carga: se omiten y al inicio el programa informa cuántas fueron omitidas.
 - Se manejan las líneas vacías, los saltos de línea de Windows (`\r\n`) y el caso de que el archivo no exista (el programa avisa y termina con código 1).
