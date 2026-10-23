@@ -85,4 +85,4 @@ bool Pedido::operator>=(const Pedido &right) const {
     return total >= right.total;
 }
 
-#endif 
+#endif
