@@ -456,4 +456,4 @@ void DListIterator<T>::operator= (T val)  {
 	current->value = val;
 }
 
-#endif /* DLIST_H_ */
+#endif
