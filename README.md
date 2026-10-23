@@ -12,12 +12,17 @@ En este avance los pedidos ya no están escritos dentro del código: se leen de 
 2. **Los pedidos se guardan en una `DList<Pedido>` en lugar de un `std::vector<Pedido>`.** Los pedidos se registran con el paso del tiempo (se agregan al final) y se recorren de forma secuencial. La lista permite agregar al final en $O(1)$ sin reservar ni copiar memoria contigua, y conserva el orden de registro. El `std::vector` solo se usa como copia temporal para ordenar, porque `Sorts<T>` trabaja con vectores.
 3. **Se agregaron consultas:** buscar por ID, pedidos de un cliente y primer/último pedido registrado. Sin ellas, la información almacenada solo podía verse completa o completa y ordenada.
 4. **El menú lee la opción como una línea de texto.** En el avance 1, escribir una letra en el menú provocaba un ciclo infinito; ahora se muestra "Opcion invalida." y el programa sigue funcionando, incluso si la entrada termina de forma inesperada.
-5. **Se usa el `dlist.h` visto en clase, con `getLast()` implementado.** En el archivo de clase `getLast()` estaba declarado pero no definido; se implementó igual que `getFirst()` pero regresando `tail->value`, porque se necesita para consultar el último pedido en $O(1)$. `dlist.h` incluye `exception.h`, por lo que también se agrega a la carpeta.
+5. **Se usa el `dlist.h` visto en clase, con `getLast()` implementado y sin excepciones.** En el archivo de clase `getLast()` estaba declarado pero no definido; se implementó igual que `getFirst()` pero regresando `tail->value`, porque se necesita para consultar el último pedido en $O(1)$. Además se quitó la dependencia a `exception.h`: las operaciones que lanzaban excepciones (por ejemplo `getFirst()` en una lista vacía) ahora regresan un valor por defecto, y el programa siempre revisa `empty()` antes de usarlas.
 
 ## Instrucciones para compilar el avance de proyecto
-Los archivos `main.cpp`, `Pedido.h`, `Sorts.h`, `dlist.h`, `exception.h` y `pedidos.csv` deben estar en la misma carpeta. Ejecuta el siguiente comando en la terminal:
+Los archivos `main.cpp`, `Pedido.h`, `Sorts.h`, `dlist.h` y `pedidos.csv` deben estar en la misma carpeta. Ejecuta el siguiente comando en la terminal:
  
 `g++ main.cpp -std=c++11 -o segundo_avance`
+
+## Instrucciones para ejecutar el avance de proyecto
+Ejecuta el siguiente comando en la terminal, desde la carpeta que contiene `pedidos.csv`:
+
+`./segundo_avance`
 
 ## Descripción de las entradas del avance de proyecto
 ### Archivo `pedidos.csv`
@@ -39,7 +44,7 @@ id,cliente,fecha,tipoCafe,cantidadKg,total
 Las líneas vacías se ignoran. Si una línea tiene campos faltantes o números inválidos, no se carga y se cuenta como omitida. Si el archivo no se puede abrir, el programa avisa y termina.
  
 ### Menú
-El usuario escribe el número de la opción y, según la opción, un ID (número entero) o el nombre de un cliente (o parte del nombre, sin importar mayúsculas o minúsculas).
+El usuario escribe el número de la opción y, según la opción, un ID (número entero) o el nombre de un cliente (o parte del nombre, respetando mayúsculas y minúsculas, por ejemplo `Centro`).
  
 ## Descripción de las salidas del avance de proyecto
 Al iniciar, el programa informa cuántos pedidos cargó y muestra el menú:
@@ -108,6 +113,34 @@ $$\text{Complejidad Total} = \log_2(n) \times O(n) = O(n \log n)$$
 | **Caso promedio** | $O(n \log n)$ | Las particiones dividen el arreglo simétricamente a la mitad en cada paso, manteniendo constante la cantidad de etapas en $\log_2(n)$ y la complejidad en $O(n)$. |
 | **Peor caso** | $O(n \log n)$ | Incluso en el caso con mayor cantidad de intercalaciones, la cantidad de etapas no cambia y la complejidad sigue en $O(n)$ en cada paso. |
 
+#### Hace un análisis de complejidad correcto y completo de todas las estructuras de datos y cada uno de sus usos en el programa.
+
+El programa usa dos estructuras: la lista doblemente encadenada `DList<Pedido>` (almacenamiento principal) y un `std::vector<Pedido>` temporal (solo para ordenar). En lo que sigue, $n$ es el número de pedidos.
+
+**Operaciones de `DList` que usa el programa**
+
+| Operación | Dónde está | Complejidad | Razón |
+| :--- | :--- | :---: | :--- |
+| `add` | `dlist.h`, línea 144 | $O(1)$ | Se enlaza el nuevo nodo después de `tail`, sin recorrer la lista. |
+| `getFirst` | `dlist.h`, línea 111 | $O(1)$ | Regresa `head->value`. |
+| `getLast` | `dlist.h`, línea 119 | $O(1)$ | Regresa `tail->value`. |
+| `empty` | `dlist.h` | $O(1)$ | Compara el tamaño de la lista. |
+| Iterador: `begin`, `end`, `++`, `()` | `dlist.h`, líneas 415 a 437 | $O(1)$ cada una | Solo mueven o leen un puntero. |
+| Recorrer toda la lista con el iterador | `main.cpp` | $O(n)$ | Son $n$ pasos de $O(1)$. |
+
+**Cada uso en el programa**
+
+| Uso | Dónde está | Complejidad en tiempo |
+| :--- | :--- | :---: |
+| Cargar el archivo (lee $n$ líneas y hace $n$ `add`) | `cargarPedidos`, `main.cpp`, línea 44 | $O(n)$ |
+| Opción 1: mostrar pedidos | `imprimirLista`, línea 74 | $O(n)$ |
+| Opción 2: ordenar y mostrar | `aVector` (línea 84) + `mergeSort` + impresión | $O(n) + O(n \log n) = O(n \log n)$ |
+| Opción 3: buscar por ID | `buscarPorId`, línea 107 | Mejor $O(1)$ (está al inicio); promedio y peor $O(n)$ |
+| Opción 4: pedidos de un cliente | `pedidosDeCliente`, línea 121 | $O(n)$ |
+| Opción 5: primer y último | `main.cpp`, líneas 225 y 226 | $O(1)$ |
+
+El `std::vector` de `aVector` se construye con $n$ `push_back` (tiempo amortizado $O(1)$ cada uno), por lo que su construcción es $O(n)$ y ocupa $O(n)$ de memoria mientras dura el ordenamiento.
+
 ### SICT0302: Toma decisiones
 #### Selecciona un algoritmo de ordenamiento adecuado al problema y lo usa correctamente.
 El desarrollo de esta competencia se demuestra en la elección e integración de **Merge Sort** para el sistema de Café Don Virginio:
@@ -115,18 +148,26 @@ El desarrollo de esta competencia se demuestra en la elección e integración de
 - En mi sistema del café los datos representan transacciones comerciales que se busca y se esperan que escalen de una manera rápida conforme el negocio progresa.A diferencia de Insertion Sort que se vuelve ineficiente con conjuntos de datos de tamaño mediano a grande, Merge sort tiende a mantener el mismo rendimiento y complejidad sin importar el volumen de los pedidos, por lo que puede garantizar tiempos de respuestas prácticamente instantaneos.
 - Aunque Quick Sort suele ser más rápido en promedio su peor caso se degrada si la lista ya está casi ordenada o si no se elige un buen pivote, además no es un algoritmo estable por defecto, y en cuanto a Merge Sort, su tiempo de ejecución es totalmente determínistico por lo que nunca habrá un escenario en el que el sistema se retrase por datos en un orden desfavorable.
 
+#### Selecciona una estructura de datos adecuada al problema y la usa correctamente.
+Se eligió una **lista doblemente encadenada** (`DList<Pedido>`):
+- Los pedidos se registran con el paso del tiempo, así que la operación principal es agregar al final, que en la lista es $O(1)$ y no requiere reservar ni copiar memoria contigua cuando el negocio crece.
+- Al tener `head` y `tail`, el primer y el último pedido registrados se consultan en $O(1)$.
+- La información se consulta recorriendo todos los pedidos (por ID, por cliente, ordenados); nunca se necesita acceder a una posición arbitraria, que es la ventaja del vector. Además, si más adelante se quiere eliminar un pedido ya entregado, en una lista es $O(1)$ una vez ubicado el nodo, mientras que en un vector hay que recorrer los elementos siguientes.
+- Se descartaron la **pila** y la **fila** porque solo permiten ver un extremo: no sería posible buscar por ID o cliente ni ordenar sin sacar los pedidos uno por uno.
+- Se usa correctamente: los pedidos se agregan con `add` al cargar el archivo, se recorren con el iterador `DListIterator`, y el vector solo existe temporalmente para ordenar.
+
 ### SICT0303: Implementa acciones científicas
  
 #### Implementa mecanismos para consultar información de las estructuras correctos.
 Todas las consultas están en el menú y recorren la lista con el iterador de `DList`:
-- **Buscar por ID** (`buscarPorId`, `main.cpp`, línea 139): regresa el pedido, o indica que no existe. Valida que lo escrito sea un entero.
-- **Pedidos de un cliente** (`pedidosDeCliente`, línea 156): imprime los pedidos cuyo cliente contiene el texto, sin importar mayúsculas, y regresa cuántos encontró. Esto permite buscar con el nombre completo o con una parte.
-- **Primer y último pedido registrados** (líneas 266 y 267): usa `getFirst()` y `getLast()` de la lista en $O(1)$.
-- **Pedidos ordenados por total** (`imprimirOrdenados`, línea 126): usa Merge Sort sobre una copia, sin alterar la lista.
+- **Buscar por ID** (`buscarPorId`, `main.cpp`, línea 107): regresa el pedido, o indica que no existe. Valida que lo escrito sea un entero.
+- **Pedidos de un cliente** (`pedidosDeCliente`, línea 121): imprime los pedidos cuyo cliente contiene el texto (distingue mayúsculas y minúsculas) y regresa cuántos encontró. Esto permite buscar con el nombre completo o con una parte.
+- **Primer y último pedido registrados** (líneas 225 y 226): usa `getFirst()` y `getLast()` de la lista en $O(1)$.
+- **Pedidos ordenados por total** (`imprimirOrdenados`, línea 96): usa Merge Sort sobre una copia, sin alterar la lista.
 En todos los casos se manejan los resultados vacíos (no existe el ID, no hay pedidos de ese cliente, la lista está vacía) con un mensaje claro.
  
 #### Implementa mecanismos de lectura de archivos para cargar datos a las estructuras de manera correcta.
-- `cargarPedidos` (`main.cpp`, línea 64) abre `pedidos.csv` con `std::ifstream`, ignora la línea de encabezado y, por cada línea, llama a `leerPedido` (línea 47). Cada pedido válido se agrega a la `DList` con `add`.
+- `cargarPedidos` (`main.cpp`, línea 44) abre `pedidos.csv` con `std::ifstream`, ignora la línea de encabezado y, por cada línea, llama a `leerPedido` (línea 22). Cada pedido válido se agrega a la `DList` con `add`.
 - `leerPedido` separa los seis campos por comas con `std::getline` y convierte los números con `aEntero` y `aDecimal`, que rechazan texto como `x` o `12abc`. También valida que el `id` y los kilogramos sean mayores a 0 y que el total no sea negativo.
 - Las líneas inválidas no detienen la carga: se omiten y al inicio el programa informa cuántas fueron omitidas.
 - Se manejan las líneas vacías, los saltos de línea de Windows (`\r\n`) y el caso de que el archivo no exista (el programa avisa y termina con código 1).
