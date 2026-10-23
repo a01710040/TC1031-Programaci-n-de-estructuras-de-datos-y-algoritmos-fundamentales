@@ -5,7 +5,7 @@ Este proyecto es un sistema de gestión y organización de pedidos para el empre
 En este avance 1, se modelaron los pedidos utilizando la clase `Pedido` y se implementó un programa interactivo en C++ que inicializa una lista de ventas en memoria dentro de un `std::vector<Pedido>`. El programa integra la plantilla de algoritmos de ordenamiento `Sorts<T>` vista en clase para organizar los pedidos por su monto total a cobrar mediante el algoritmo `mergeSort`.
 
 ## Descripción del avance 2
-En este avance los pedidos ya no están escritos dentro del código: se **leen de un archivo `pedidos.csv`** y se **almacenan en una lista doblemente encadenada** (`DList<Pedido>`, en `dlist.h`). El programa conserva el ordenamiento con Merge Sort del avance 1, pero ahora lo aplica sobre los datos cargados desde el archivo, y agrega mecanismos para consultar la información: buscar un pedido por ID, ver los pedidos de un cliente y ver el primer y el último pedido registrados.
+En este avance los pedidos ya no están escritos dentro del código: se leen de un archivo `pedidos.csv` y se almacenan en una lista doblemente encadenada (`DList<Pedido>`, en `dlist.h`). El programa conserva el ordenamiento con Merge Sort del avance 1, pero ahora lo aplica sobre los datos cargados desde el archivo, y agrega mecanismos para consultar la información: buscar un pedido por ID, ver los pedidos de un cliente y ver el primer y el último pedido registrados.
 
 ### Cambios sobre el primer avance
 1. **Los datos se cargan desde `pedidos.csv`.** En el avance 1 los cinco pedidos estaban escritos en `main.cpp`, así que cualquier pedido nuevo obligaba a modificar y recompilar el programa. Con el archivo, los datos se cambian sin tocar el código.
