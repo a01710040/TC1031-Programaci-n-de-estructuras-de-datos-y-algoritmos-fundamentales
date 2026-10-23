@@ -1,0 +1,13 @@
+id,cliente,fecha,tipoCafe,cantidadKg,total
+101,Cafeteria El Centro,2026-08-10,Molido,15.5,3875.00
+102,Abarrotes Don Pedro,2026-08-12,Grano,5.0,1150.00
+103,Hotel Sierra Azul,2026-08-11,Grano,25.0,5750.00
+104,Maria Elena Gomez,2026-08-15,Molido,2.0,500.00
+105,Restaurante El Mirador,2026-08-14,Grano,10.0,2300.00
+106,Cafeteria El Centro,2026-08-22,Molido,12.0,3000.00
+107,Hotel Sierra Azul,2026-08-25,Grano,30.0,6900.00
+108,Abarrotes Don Pedro,2026-09-02,Molido,4.0,1000.00
+109,Maria Elena Gomez,2026-09-05,Grano,3.0,690.00
+110,Restaurante El Mirador,2026-09-09,Molido,8.5,2125.00
+111,Cafeteria El Centro,2026-09-14,Grano,20.0,4600.00
+112,Tienda La Sierra,2026-09-18,Molido,6.0,1500.00
