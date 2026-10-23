@@ -170,4 +170,3 @@ En todos los casos se manejan los resultados vacíos (no existe el ID, no hay pe
 - `cargarPedidos` (`main.cpp`, línea 44) abre `pedidos.csv` con `std::ifstream`, ignora la línea de encabezado y, por cada línea, llama a `leerPedido` (línea 22). Cada pedido válido se agrega a la `DList` con `add`.
 - `leerPedido` separa los seis campos por comas con `std::getline` y convierte los números con `aEntero` y `aDecimal`, que rechazan texto como `x` o `12abc`. También valida que el `id` y los kilogramos sean mayores a 0 y que el total no sea negativo.
 - Las líneas inválidas no detienen la carga: se omiten y al inicio el programa informa cuántas fueron omitidas.
-- Se manejan las líneas vacías, los saltos de línea de Windows (`\r\n`) y el caso de que el archivo no exista (el programa avisa y termina con código 1).
