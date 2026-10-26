@@ -26,7 +26,7 @@ Ejecuta el siguiente comando en la terminal, desde la carpeta que contiene `pedi
 
 ## Descripción de las entradas del avance de proyecto
 ### Archivo `pedidos.csv`
-Archivo de texto con un pedido por línea y los campos separados por comas. **La primera línea es el encabezado y se ignora.** El formato es:
+Archivo de texto con un pedido por línea y los campos separados por comas.
  
 ```text
 id,cliente,fecha,tipoCafe,cantidadKg,total
