@@ -363,6 +363,8 @@ T DList<T>::remove(int index)  {
 	p->previous->next = p->next;
 	if (p->next != 0) {
 		p->next->previous = p->previous;
+	} else {
+		tail = p->previous;
 	}
 	size--;
 
